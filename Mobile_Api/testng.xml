@@ -2,24 +2,26 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="none">
   <test name="Test">
-   <parameter name="sBaseHost" value="irr.ru"/>
-   <parameter name="sLogin" value="timon2181"/> 
-   <parameter name="sPassword" value="retry2"/> 
-   <parameter name="sIdAdvert" value="257190269"/> 
-   <parameter name="sParam1" value="currency=RUR/"/>
-   <parameter name="sParam2" value="{make=BMW, model=116, car-year=2010, bodytype=внедорожник, transmittion=механическая}"/> 
-   <parameter name="sVideoUrl" value="http://www.youtube.com/watch?v=AMpZ0TGjbWE"/> 
+   <parameter name="sBaseHost" value="master.prontosoft.by"/>
+   <parameter name="sLogin" value="timon2180"/>
+   <parameter name="sPassword" value="retry2"/>
+   <parameter name="sIdAdvert" value="257190269"/>
+   <parameter name="sParam1" value="{phone=343434343434, email=mail@mail.com, contact=Vasia, phone2=1111111, phone_add2=2222, title=Заголовок, text=Текст, currency=RUR, price=1000}"/>
+   <parameter name="sParam2" value="{make=BMW, model=116, car-year=2010, bodytype=внедорожник, transmittion=механическая}"/>
+   <parameter name="sVideoUrl" value="http://www.youtube.com/watch?v=AMpZ0TGjbWE"/>
    <parameter name="sNumberDays" value="7"/>
    <parameter name="bAuthFlag" value="true"/>
    <parameter name="bApp_token" value="true"/>
    <parameter name="sNewPassword" value="retry2"/>
-   <parameter name="sParam" value="{region=russia/, search_string=карьер}"/>
-   <parameter name="sCategory" value="/"/> 
-   <parameter name="sTypeApi" value="mobile_api"/> 
-   <parameter name="sRegion" value="russia/krasnoyarskiy-kray/birilyusskiy-r_n/"/> 
+   <parameter name="sParam" value="{category=cars/passenger/new/, region=russia/moskva-gorod/ ,advert_type=auto_new, source_from=9}"/>
+   <parameter name="sCategory" value="/"/>
+   <parameter name="sTypeApi" value="mobile_api"/>
+   <parameter name="sRegion" value="russia/krasnoyarskiy-kray/birilyusskiy-r_n/"/>
+   <parameter name="sVersion" value="1.0"/>
+   <parameter name="sPathImageNew" value="3.jpg"/>
   <groups>
     <run>
-      <include name="AutoTest_18"/>
+      <include name="PostAdvert_2_1"/>
     </run>
   </groups>
     <classes>

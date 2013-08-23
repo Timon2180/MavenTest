@@ -2,6 +2,7 @@ package pack_connect;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -121,17 +122,17 @@ public abstract class Connect_Request_Abstract
         }
         post.setEntity(reqEntity);
         ////////////////////////////////// получение тела запроса
-        /*java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream((int)reqEntity.getContentLength());
+        java.io.ByteArrayOutputStream out = new java.io.ByteArrayOutputStream((int)reqEntity.getContentLength());
         reqEntity.writeTo(out);
         byte[] entityContentAsBytes = out.toByteArray();
         // or convert to string
         String entityContentAsString = new String(out.toByteArray());
         print(entityContentAsString);
         
-        File file = new File("log.txt"); 
+        File file = new File("log2.txt");
         FileWriter fw = new FileWriter(file);
         fw.write(entityContentAsString);
-        fw.close();*/
+        fw.close();
         
         ////////////////////////////////////
     	response = hClient.execute(post);
