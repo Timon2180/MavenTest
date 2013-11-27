@@ -1,5 +1,6 @@
 package selenium;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -10,6 +11,8 @@ import utils.Proper;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -132,5 +135,60 @@ public class DriverConstruct extends RemoteWebDriver {
     return elementVisibleAndDisplayed;
   }
 
+  public void typeByXpath(String sXpath, String sText) {
+    waitElementPresentAndVisible(sXpath, 5);
+    findElementByXPath(sXpath).clear();
+    if (StringUtils.isEmpty(sText)) {
+      sText = "";
+    }
+    findElementByXPath(sXpath).sendKeys(sText);
+  }
+  public void selectOption(String sXpath, String option) {
+    waitElementPresentAndVisible(sXpath, 5);
+    waitElementEnabled(sXpath, 3);
+    List<WebElement> options = findElementByXPath(sXpath).findElements(By.tagName("option"));
+    for (WebElement listElement : options) {
+      if (listElement.getText().equals(option)) {
+        click(listElement);
+        break;
+      }
+    }
+  }
+  public String getText(String sXpath) {
+    waitElementPresentAndVisible(sXpath, 5);
+    String sResult = findElementByXPath(sXpath).getText().trim();
+    return sResult;
+  }
+  public int getElementsCount(String sXpath) {
+    return findElementsByXPath(sXpath).size();
+  }
 
+
+  public void waitLoadjQueryElement() {
+    if ((Boolean) ((JavascriptExecutor) this).executeScript("return window.jQuery != undefined")) {
+      WebDriverWait webDriverWait = new WebDriverWait(this, 10);
+      try {
+        webDriverWait.until(new ExpectedCondition<Boolean>() {
+          @Override
+          public Boolean apply(WebDriver driver) {
+            return (Boolean) ((JavascriptExecutor) driver).executeScript("return window.jQuery.active == 0");
+          }
+        });
+      } catch (Exception exc) {
+        exc.printStackTrace();
+      }
+    }
+  }
 }
+
+ /* public void selectJQueryOptions(String jQueryRequest, String sNameElement) {
+    //$('#n-button').data('selectelement').data('selectmenu')._optionLis;
+    //var dd = new Array(); $('#n-button').each(function(i) { dd[i] = $(this).data('selectelement').data('selectmenu')._optionLis }); return dd;
+*//*    ArrayList<WebElement> list = (ArrayList<WebElement>)*//*
+    long l =  (Long)executeScript("return $('#n-button').data('selectelement').data('selectmenu')._optionLis.children().length;");
+    System.out.println(l);
+    WebElement element = (WebElement)executeScript("return $('#n-button').data('selectelement').data('selectmenu')._optionLis.children()[0];");
+    System.out.println(element.getText());
+  }*/
+
+

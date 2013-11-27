@@ -1,6 +1,7 @@
-package page;
+package page.mailClientPage;
 
 import org.apache.log4j.Level;
+import page.BasePage;
 import utils.enums.FOLDERS;
 
 /**
